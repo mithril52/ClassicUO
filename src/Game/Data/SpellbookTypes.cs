@@ -31,6 +31,7 @@ namespace ClassicUO.Game.Data
         Spellweaving,
         Mysticism,
         Mastery,
+        Evocation,
         Unknown = 0xFF
     }
 }

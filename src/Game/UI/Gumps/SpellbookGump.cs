@@ -610,6 +610,11 @@ namespace ClassicUO.Game.UI.Gumps
                     iconGraphic = (ushort) SpellsMastery.GetSpell(i + 1).GumpIconID;
                     toolTipCliloc = i >= 0 && i < 6 ? 1115689 : 1155938 - 6;
                 }
+                else if (_spellBookType == SpellBookType.Evocation)
+                {
+                    iconGraphic = (ushort) SpellsEvocation.GetSpell(i + 1).GumpIconID;
+                    GetSpellToolTip(out toolTipCliloc);
+                }
                 else
                 {
                     iconGraphic = (ushort) (iconStartGraphic + i);
@@ -778,6 +783,11 @@ namespace ClassicUO.Game.UI.Gumps
                     def = SpellsMastery.GetSpell(idx);
 
                     break;
+
+                case SpellBookType.Evocation:
+                    def = SpellsEvocation.GetSpell(idx);
+
+                    break;
             }
 
             return def;
@@ -849,6 +859,14 @@ namespace ClassicUO.Game.UI.Gumps
                     bookGraphic = 0x8AC;
                     minimizedGraphic = 0x08BA;
                     iconStartGraphic = 0x945;
+                    break;
+                
+                case SpellBookType.Evocation:
+                    maxSpellsCount = SpellsEvocation.MaxSpellCount;
+                    bookGraphic = 0x08AC;
+                    minimizedGraphic = 0x08BA;
+                    iconStartGraphic = 0x08C0;
+
                     break;
             }
 
@@ -961,6 +979,14 @@ namespace ClassicUO.Game.UI.Gumps
                     reagents = def.CreateReagentListString("\n");
 
                     break;
+ 
+                case SpellBookType.Evocation:
+                    def = SpellsEvocation.GetSpell(offset + 1);
+                    name = def.Name;
+                    abbreviature = def.PowerWords;
+                    reagents = def.CreateReagentListString("\n");
+
+                    break;
             }
         }
 
@@ -1030,6 +1056,14 @@ namespace ClassicUO.Game.UI.Gumps
                     }
 
                     return;
+                
+                case SpellBookType.Evocation:
+                    def = SpellsEvocation.GetSpell(offset + 1);
+                    manaCost = def.ManaCost;
+                    minSkill = def.MinSkill;
+
+                    break;
+
             }
 
             text = $"Mana cost: {manaCost}\nMin. Skill: {minSkill}";
@@ -1158,6 +1192,10 @@ namespace ClassicUO.Game.UI.Gumps
                 case 0x225A:
                 case 0x225B:
                     _spellBookType = SpellBookType.Mastery;
+
+                    break;
+                case 0x4A9C:
+                    _spellBookType = SpellBookType.Evocation;
 
                     break;
             }
