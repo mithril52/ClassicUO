@@ -15,7 +15,7 @@ namespace ClassicUO.Game.Data
         {
             _spellsDict = new Dictionary<int, SpellDefinition>
             {
-                {1, new SpellDefinition("Firebolt", 701, 0x08D1, "In Flam", 0, 0, TargetType.Harmful)},
+                {1, new SpellDefinition("Fire Surge", 701, 0x08D1, "In Flam", 0, 0, TargetType.Harmful)},
                 {2, new SpellDefinition("Fireball", 702, 0x08F6, "In Vas Flam", 12, 10, TargetType.Harmful)},
                 {3, new SpellDefinition("Firebolt", 703, 0x08D1, "In Flam", 10, 20, TargetType.Harmful)},
                 {4, new SpellDefinition("Firebolt", 704, 0x08D1, "In Flam", 20, 40, TargetType.Harmful)},

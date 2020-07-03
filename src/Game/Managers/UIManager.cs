@@ -514,6 +514,19 @@ namespace ClassicUO.Game.Managers
             return null;
         }
 
+        public static UseSpellButtonGump GetUseSpellButtonGump(uint spellId)
+        {
+            for (var g = Gumps.Last; g != null; g = g.Previous)
+            {
+                if (g.Value != null && !g.Value.IsDisposed && g.Value is UseSpellButtonGump spellGump && spellGump.SpellID == spellId)
+                {
+                    return spellGump;
+                }
+            }
+
+            return null;
+        }
+
         public static void Update(double totalMS, double frameMS)
         {
             SortControlsByInfo();
