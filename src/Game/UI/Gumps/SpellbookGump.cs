@@ -905,6 +905,9 @@ namespace ClassicUO.Game.UI.Gumps
                 case SpellBookType.Mastery:
                     offset = 0;
                     break;
+                case SpellBookType.Evocation:
+                    offset = 1153000;
+                    break;
                 default:
                     offset = 0;
                     break;
@@ -995,7 +998,7 @@ namespace ClassicUO.Game.UI.Gumps
             y = 162;
             int manaCost = 0;
             int minSkill = 0;
-
+            
             switch (_spellBookType)
             {
                 case SpellBookType.Necromancy:
@@ -1062,6 +1065,15 @@ namespace ClassicUO.Game.UI.Gumps
                     manaCost = def.ManaCost;
                     minSkill = def.MinSkill;
 
+                    if (def.Cooldown > 0)
+                    {
+                        y = 148;
+                        text = $"Mana cost: {manaCost}\nMin. Skill: {minSkill}\nCooldown: {def.Cooldown}";
+                    }
+                    else
+                        text = $"Mana cost: {manaCost}\nMin. Skill: {minSkill}";
+
+                    return;
                     break;
 
             }

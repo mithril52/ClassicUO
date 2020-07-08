@@ -155,7 +155,7 @@ namespace ClassicUO.Game.UI.Controls
             Item arms = mobile.FindItemByLayer(Layer.Arms);
 
             Layer[] layers = equipItem != null && equipItem.ItemData.IsContainer ? _layerOrder_quiver_fix : _layerOrder;
-            bool switch_arms_with_torso = arms != null && arms.Graphic == 0x1410;
+            bool switch_arms_with_torso = arms != null && (arms.Graphic == 0x1410 || arms.Graphic == 0x3c3d);
 
 
             for (int i = 0; i < layers.Length; i++)

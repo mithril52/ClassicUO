@@ -15,12 +15,16 @@ namespace ClassicUO.Game.Data
         {
             _spellsDict = new Dictionary<int, SpellDefinition>
             {
-                {1, new SpellDefinition("Fire Surge", 701, 0x08D1, "In Flam", 0, 0, TargetType.Harmful)},
-                {2, new SpellDefinition("Fireball", 702, 0x08F6, "In Vas Flam", 12, 10, TargetType.Harmful)},
-                {3, new SpellDefinition("Firebolt", 703, 0x08D1, "In Flam", 10, 20, TargetType.Harmful)},
-                {4, new SpellDefinition("Firebolt", 704, 0x08D1, "In Flam", 20, 40, TargetType.Harmful)},
-                {5, new SpellDefinition("Firebolt", 705, 0x08D1, "In Flam", 20, 50, TargetType.Harmful)},
-                {6, new SpellDefinition("Firebolt", 706, 0x08D1, "In Flam", 25, 60, TargetType.Harmful)},
+                {1, new SpellDefinition("Flame Surge", 801, 0x08D1, "In Flam", 2, 0, 0, TargetType.Harmful, Reagents.AmberPowder)},
+                {2, new SpellDefinition("Brimstone", 802, 0x08F6, "Flam Kal Des Ylem", 4, 50, 5, TargetType.Harmful, Reagents.RubyPowder)},
+                {3, new SpellDefinition("Lightning", 803, 0x08E9, "Por Ort Grav", 6, 50, 10, TargetType.Harmful, Reagents.SapphirePowder)},
+                {4, new SpellDefinition("Thunderstorm", 804, 0x08F0, "Vas Ort Grav", 8, 70, 15, TargetType.Harmful, Reagents.SapphirePowder)},
+                {5, new SpellDefinition("Flame Strike", 805, 0x08F2, "Kal Vas Flam", 10, 80, 20, TargetType.Harmful, Reagents.RubyPowder)},
+                {6, new SpellDefinition("Conflagration", 806, 0x08EA, "Flam Des Ylem", 12, 50, 30, TargetType.Harmful, Reagents.RubyPowder)},
+                {7, new SpellDefinition("Magic Malaise", 807, 0x08F4, "Des Sanct", 14, 70, 60, TargetType.Harmful, Reagents.CitrinePowder)},
+                {8, new SpellDefinition("Wither Trap", 808, 0x08F5, "In Jux Grav", 16, 70, 90, TargetType.Neutral, Reagents.CitrinePowder)},
+                {9, new SpellDefinition("Fire Armor", 809, 0x08DB, "In Flam Sanct", 18, 80, 115, TargetType.Neutral, Reagents.RubyPowder, Reagents.SapphirePowder)},
+                {10, new SpellDefinition("Magic Reflect", 810, 0x08E3, "In Jux Sanct", 20, 90, 130, TargetType.Neutral, Reagents.CitrinePowder, Reagents.SapphirePowder)}
             };
         }
 

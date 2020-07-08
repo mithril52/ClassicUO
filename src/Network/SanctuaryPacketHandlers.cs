@@ -10,8 +10,7 @@ namespace ClassicUO.Network
             Log.Trace($"Received Spell Cooldown, Spell ID = {spellId}, Duration = {duration}");
 
             var spellGump = UIManager.GetUseSpellButtonGump(spellId);
-            if (spellGump != null)
-                spellGump.Hue = 38;
+            spellGump?.SetCooldown(duration);
         }
 
         public static void HandleEndCooldown(ushort spellId)
@@ -19,8 +18,23 @@ namespace ClassicUO.Network
             Log.Trace($"Received End Cooldown, Spell ID = {spellId}");
 
             var spellGump = UIManager.GetUseSpellButtonGump(spellId);
-            if (spellGump != null)
-                spellGump.Hue = 0;
+            spellGump?.ClearCooldown();
+        }
+
+        public static void HandleActivateAutoAttackSpell(ushort spellId)
+        {
+            Log.Trace($"Received Activate Auto Attack, Spell ID = {spellId}");
+
+            var spellGump = UIManager.GetUseSpellButtonGump(spellId);
+            spellGump?.SetActive();
+        }
+
+        public static void HandleDeactivateAutoAttackSpell(ushort spellId)
+        {
+            Log.Trace($"Received Deactivate Auto Attack, Spell ID = {spellId}");
+
+            var spellGump = UIManager.GetUseSpellButtonGump(spellId);
+            spellGump?.SetInactive();
         }
     }
 }

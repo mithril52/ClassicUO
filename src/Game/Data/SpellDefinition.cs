@@ -65,6 +65,22 @@ namespace ClassicUO.Game.Data
             AddToWatchedSpell();
         }
 
+        public SpellDefinition(string name, int index, int gumpIconID, string powerwords, int manacost, int minskill, int cooldown, TargetType target, params Reagents[] regs)
+        {
+            Name = name;
+            ID = index;
+            GumpIconID = gumpIconID;
+            GumpIconSmallID = gumpIconID;
+            Regs = regs;
+            ManaCost = manacost;
+            MinSkill = minskill;
+            Cooldown = cooldown;
+            PowerWords = powerwords;
+            TithingCost = 0;
+            TargetType = target;
+            AddToWatchedSpell();
+        }
+
         public SpellDefinition(string name, int index, int gumpIconID, string powerwords, TargetType target, params Reagents[] regs)
         {
             Name = name;
@@ -98,7 +114,7 @@ namespace ClassicUO.Game.Data
         public readonly int MinSkill;
         public readonly int TithingCost;
         public readonly TargetType TargetType;
-
+        public readonly int Cooldown;
 
         public string CreateReagentListString(string separator)
         {
@@ -222,9 +238,9 @@ namespace ClassicUO.Game.Data
                 return SpellsMysticism.GetSpell((fullidx - 77) % 100);
 
             if (fullidx < 800)
-                return SpellsEvocation.GetSpell(fullidx % 100);
+                return SpellsMastery.GetSpell(fullidx % 100);
 
-            return SpellsMastery.GetSpell(fullidx % 100);
+            return SpellsEvocation.GetSpell(fullidx % 100);
         }
 
         public static void FullIndexSetModifySpell(int fullidx, int id, int iconid, int smalliconid, int minskill, int manacost, int tithing, string name, string words, TargetType target, params Reagents[] regs)
@@ -272,9 +288,9 @@ namespace ClassicUO.Game.Data
             else if (fullidx < 700)
                 SpellsMysticism.SetSpell(id - 77, in sd);
             else if (fullidx < 800)
-                SpellsEvocation.SetSpell(id, in sd);
-            else
                 SpellsMastery.SetSpell(id, in sd);
+            else
+                SpellsEvocation.SetSpell(id, in sd);
         }
     }
 }

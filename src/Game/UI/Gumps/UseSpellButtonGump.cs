@@ -25,12 +25,12 @@ using System.Xml;
 
 using ClassicUO.Configuration;
 using ClassicUO.Game.Data;
-using ClassicUO.Game.Managers;
 using ClassicUO.Game.UI.Controls;
 using ClassicUO.Input;
 using ClassicUO.IO.Resources;
+using ClassicUO.Renderer;
 using ClassicUO.Utility;
-
+using ClassicUO.Utility.Logging;
 using Microsoft.Xna.Framework;
 
 namespace ClassicUO.Game.UI.Gumps
@@ -39,7 +39,10 @@ namespace ClassicUO.Game.UI.Gumps
     {
         private SpellDefinition _spell;
         private GumpPic _background;
-
+        private TextBox _cooldownText;
+        private DateTime _nextCooldownUpdate = DateTime.MinValue;
+        private int _cooldownRemaining = 0;
+        
         public UseSpellButtonGump() : base(0, 0)
         {
             CanMove = true;
@@ -66,11 +69,20 @@ namespace ClassicUO.Game.UI.Gumps
         {
             Add(_background = new GumpPic(0, 0, (ushort) _spell.GumpIconSmallID, 0) {AcceptMouseInput = false});
 
+            // triple digit X = 39
+            // double digit X = 33
+            // single digit X = 27
+            
+            Add(_cooldownText = new TextBox(3, 32, hue: 0xFFFF, isunicode: false, style: FontStyle.BlackBorder, alig: TEXT_ALIGN_TYPE.TS_CENTER) 
+                {X = 27, Y = 11, IsEditable = false, Text = ""}
+            );
+            
             int cliloc = GetSpellTooltip(_spell.ID);
 
             if (cliloc != 0)
             {
                 SetTooltip(ClilocLoader.Instance.GetString(cliloc), 80);
+                Log.Info($"Cliloc tooltip: {cliloc}");
             }
 
             WantUpdateSize = true;
@@ -80,6 +92,32 @@ namespace ClassicUO.Game.UI.Gumps
             AnchorType = ANCHOR_TYPE.SPELL;
         }
 
+        public void SetActive()
+        {
+            Hue = 0x44;
+        }
+        
+        public void SetInactive()
+        {
+            Hue = 0;
+        }
+
+        public void SetCooldown(int duration)
+        {
+            Hue = 38;
+            _cooldownRemaining = duration + 1;
+            _cooldownText.Text = duration.ToString();
+            _nextCooldownUpdate = DateTime.UtcNow;
+        }
+
+        public void ClearCooldown()
+        {
+            Hue = 0;
+            _cooldownRemaining = 0;
+            _cooldownText.Text = "";
+            _nextCooldownUpdate = DateTime.MinValue;
+        }
+        
         private static int GetSpellTooltip(int id)
         {
             if (id >= 1 && id < 64) // Magery
@@ -112,6 +150,11 @@ namespace ClassicUO.Game.UI.Gumps
                     return 1155896 + (id - 707);
             }
 
+            if (id >= 801 && id <= 820)
+            {
+                return 3003000 + (id - 1);
+            }
+            
             return 0;
         }
 
@@ -187,6 +230,32 @@ namespace ClassicUO.Game.UI.Gumps
             base.Restore(xml);
             _spell = SpellDefinition.FullIndexGetSpell(int.Parse(xml.GetAttribute("id")));
             BuildGump();
+        }
+
+        public override void Update(double totalMS, double frameMS)
+        {
+            if (_nextCooldownUpdate > DateTime.MinValue && _nextCooldownUpdate <= DateTime.UtcNow)
+            {
+                _nextCooldownUpdate = _nextCooldownUpdate.AddSeconds(1);
+                
+                _cooldownText.Text = _cooldownRemaining > 0 
+                    ? _cooldownRemaining.ToString() 
+                    : "";
+
+                switch (_cooldownRemaining.ToString().Length)
+                {
+                    case 1: _cooldownText.X = 27;
+                        break;
+                    case 2: _cooldownText.X = 33;
+                        break;
+                    case 3: _cooldownText.X = 37;
+                        break;
+                }
+ 
+                _cooldownRemaining--;
+            }
+            
+            base.Update(totalMS, frameMS);
         }
     }
 }

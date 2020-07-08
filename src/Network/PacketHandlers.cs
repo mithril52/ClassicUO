@@ -3709,11 +3709,18 @@ namespace ClassicUO.Network
                     
 
                     break;
+                // Sanctuary Commands
                 case 0xC001:
                     SanctuaryPacketHandlers.HandleSpellCooldown(p.ReadUShort(), p.ReadUShort());
                     break;
                 case 0xC002:
                     SanctuaryPacketHandlers.HandleEndCooldown(p.ReadUShort());
+                    break;
+                case 0xC003:
+                    SanctuaryPacketHandlers.HandleActivateAutoAttackSpell(p.ReadUShort());
+                    break;
+                case 0xC004:
+                    SanctuaryPacketHandlers.HandleDeactivateAutoAttackSpell(p.ReadUShort());
                     break;
                 default:
                     Log.Warn($"Unhandled 0xBF - sub: {cmd.ToHex()}");

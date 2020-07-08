@@ -52,6 +52,19 @@ namespace ClassicUO.Game.Data
         DeadWood,
         WyrmHeart,
 
+        // Sanctuary reagents
+        BlackthornBerries,
+        Mugwort,
+        Woundwort,
+        Mandragona,
+        Belladonna,
+        BeesLace,
+        BatNut,
+        AmberPowder,
+        RubyPowder,
+        SapphirePowder,
+        CitrinePowder,
+        
         // None
         None
     }
