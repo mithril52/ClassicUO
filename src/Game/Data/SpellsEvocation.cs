@@ -21,10 +21,10 @@ namespace ClassicUO.Game.Data
                 {4, new SpellDefinition("Thunderstorm", 804, 0x08F0, "Vas Ort Grav", 8, 70, 15, TargetType.Harmful, Reagents.SapphirePowder)},
                 {5, new SpellDefinition("Flame Strike", 805, 0x08F2, "Kal Vas Flam", 10, 80, 20, TargetType.Harmful, Reagents.RubyPowder)},
                 {6, new SpellDefinition("Conflagration", 806, 0x08EA, "Flam Des Ylem", 12, 50, 30, TargetType.Harmful, Reagents.RubyPowder)},
-                {7, new SpellDefinition("Magic Malaise", 807, 0x08F4, "Des Sanct", 14, 70, 60, TargetType.Harmful, Reagents.CitrinePowder)},
-                {8, new SpellDefinition("Wither Trap", 808, 0x08F5, "In Jux Grav", 16, 70, 90, TargetType.Neutral, Reagents.CitrinePowder)},
-                {9, new SpellDefinition("Fire Armor", 809, 0x08DB, "In Flam Sanct", 18, 80, 115, TargetType.Neutral, Reagents.RubyPowder, Reagents.SapphirePowder)},
-                {10, new SpellDefinition("Magic Reflect", 810, 0x08E3, "In Jux Sanct", 20, 90, 130, TargetType.Neutral, Reagents.CitrinePowder, Reagents.SapphirePowder)}
+                {7, new SpellDefinition("Magic Malaise", 807, 0x08F4, "Des Sanct", 14, 70, 45, TargetType.Harmful, Reagents.CitrinePowder)},
+                {8, new SpellDefinition("Wither Trap", 808, 0x08F5, "In Jux Grav", 16, 70, 45, TargetType.Neutral, Reagents.CitrinePowder)},
+                {9, new SpellDefinition("Fire Armor", 809, 0x08DB, "In Flam Sanct", 18, 80, 60, TargetType.Neutral, Reagents.RubyPowder, Reagents.SapphirePowder)},
+                {10, new SpellDefinition("Magic Reflect", 810, 0x08E3, "In Jux Sanct", 20, 90, 75, TargetType.Neutral, Reagents.CitrinePowder, Reagents.SapphirePowder)}
             };
         }
 
