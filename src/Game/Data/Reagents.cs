@@ -60,7 +60,7 @@ namespace ClassicUO.Game.Data
         Belladonna,
         BeesLace,
         BatNut,
-        AmberPowder,
+        AmethystPowder,
         RubyPowder,
         SapphirePowder,
         CitrinePowder,

@@ -15,16 +15,16 @@ namespace ClassicUO.Game.Data
         {
             _spellsDict = new Dictionary<int, SpellDefinition>
             {
-                {1, new SpellDefinition("Flame Surge", 801, 0x08D1, "In Flam", 2, 0, 0, TargetType.Harmful, Reagents.AmberPowder)},
-                {2, new SpellDefinition("Brimstone", 802, 0x08F6, "Flam Kal Des Ylem", 4, 50, 5, TargetType.Harmful, Reagents.RubyPowder)},
-                {3, new SpellDefinition("Lightning", 803, 0x08E9, "Por Ort Grav", 6, 50, 10, TargetType.Harmful, Reagents.SapphirePowder)},
-                {4, new SpellDefinition("Thunderstorm", 804, 0x08F0, "Vas Ort Grav", 8, 70, 15, TargetType.Harmful, Reagents.SapphirePowder)},
-                {5, new SpellDefinition("Flame Strike", 805, 0x08F2, "Kal Vas Flam", 10, 80, 20, TargetType.Harmful, Reagents.RubyPowder)},
-                {6, new SpellDefinition("Conflagration", 806, 0x08EA, "Flam Des Ylem", 12, 50, 30, TargetType.Harmful, Reagents.RubyPowder)},
-                {7, new SpellDefinition("Magic Malaise", 807, 0x08F4, "Des Sanct", 14, 70, 45, TargetType.Harmful, Reagents.CitrinePowder)},
-                {8, new SpellDefinition("Wither Trap", 808, 0x08F5, "In Jux Grav", 16, 70, 45, TargetType.Neutral, Reagents.CitrinePowder)},
-                {9, new SpellDefinition("Fire Armor", 809, 0x08DB, "In Flam Sanct", 18, 80, 60, TargetType.Neutral, Reagents.RubyPowder, Reagents.SapphirePowder)},
-                {10, new SpellDefinition("Magic Reflect", 810, 0x08E3, "In Jux Sanct", 20, 90, 75, TargetType.Neutral, Reagents.CitrinePowder, Reagents.SapphirePowder)}
+                {1, new SpellDefinition("Flame Surge", 801, 0x029B, "Un Orth Fam", 2, 0, 0, TargetType.Harmful, Reagents.AmethystPowder)},
+                {2, new SpellDefinition("Brimstone", 802, 0x029C, "Fam Orth Ger", 4, 50, 5, TargetType.Harmful, Reagents.RubyPowder)},
+                {3, new SpellDefinition("Lightning", 803, 0x029D, "Gal Un Orth", 6, 50, 10, TargetType.Harmful, Reagents.SapphirePowder)},
+                {4, new SpellDefinition("Thunderstorm", 804, 0x029E, "Ger Na-Hath Gal", 8, 70, 15, TargetType.Harmful, Reagents.SapphirePowder)},
+                {5, new SpellDefinition("Flame Strike", 805, 0x029F, "Na-Hath Fam Orth", 10, 80, 20, TargetType.Harmful, Reagents.RubyPowder)},
+                {6, new SpellDefinition("Conflagration", 806, 0x02A0, "Ged Fam Ur Med", 12, 50, 30, TargetType.Harmful, Reagents.RubyPowder)},
+                {7, new SpellDefinition("Magic Malaise", 807, 0x02A1, "Gal Ur Ger", 14, 70, 45, TargetType.Harmful, Reagents.CitrinePowder)},
+                {8, new SpellDefinition("Wither Trap", 808, 0x02A2, "Ger Don Un Orth", 16, 70, 45, TargetType.Neutral, Reagents.AmethystPowder)},
+                {9, new SpellDefinition("Fire Armor", 809, 0x02A3, "Fam Tal Orth Fam", 18, 80, 60, TargetType.Neutral, Reagents.RubyPowder, Reagents.SapphirePowder)},
+                {10, new SpellDefinition("Magic Reflect", 810, 0x02A4, "Tal Gal Ceph", 20, 90, 75, TargetType.Neutral, Reagents.AmethystPowder, Reagents.SapphirePowder)}
             };
         }
 
