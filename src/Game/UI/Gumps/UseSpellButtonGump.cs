@@ -39,7 +39,7 @@ namespace ClassicUO.Game.UI.Gumps
     {
         private SpellDefinition _spell;
         private GumpPic _background;
-        private TextBox _cooldownText;
+        private Label _cooldownText;
         private DateTime _nextCooldownUpdate = DateTime.MinValue;
         private int _cooldownRemaining = 0;
         
@@ -69,12 +69,8 @@ namespace ClassicUO.Game.UI.Gumps
         {
             Add(_background = new GumpPic(0, 0, (ushort) _spell.GumpIconSmallID, 0) {AcceptMouseInput = false});
 
-            // triple digit X = 39
-            // double digit X = 33
-            // single digit X = 27
-            
-            Add(_cooldownText = new TextBox(3, 32, hue: 0xFFFF, isunicode: false, style: FontStyle.BlackBorder, alig: TEXT_ALIGN_TYPE.TS_CENTER) 
-                {X = 27, Y = 11, IsEditable = false, Text = ""}
+            Add(_cooldownText = new Label("", false, 0xFFFF, 0, 3, FontStyle.BlackBorder, TEXT_ALIGN_TYPE.TS_CENTER)
+                {X = 10, Y = 11, IsEditable = false}
             );
             
             int cliloc = GetSpellTooltip(_spell.ID);
@@ -249,11 +245,11 @@ namespace ClassicUO.Game.UI.Gumps
 
                 switch (_cooldownRemaining.ToString().Length)
                 {
-                    case 1: _cooldownText.X = 27;
+                    case 1: _cooldownText.X = 16;
                         break;
-                    case 2: _cooldownText.X = 33;
+                    case 2: _cooldownText.X = 10;
                         break;
-                    case 3: _cooldownText.X = 37;
+                    case 3: _cooldownText.X = 6;
                         break;
                 }
  
