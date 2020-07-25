@@ -615,6 +615,11 @@ namespace ClassicUO.Game.UI.Gumps
                     iconGraphic = (ushort) SpellsEvocation.GetSpell(i + 1).GumpIconID;
                     GetSpellToolTip(out toolTipCliloc);
                 }
+                else if (_spellBookType == SpellBookType.Intonation)
+                {
+                    iconGraphic = (ushort) SpellsIntonation.GetSpell(i + 1).GumpIconID;
+                    GetSpellToolTip(out toolTipCliloc);
+                }
                 else
                 {
                     iconGraphic = (ushort) (iconStartGraphic + i);
@@ -788,6 +793,11 @@ namespace ClassicUO.Game.UI.Gumps
                     def = SpellsEvocation.GetSpell(idx);
 
                     break;
+
+                case SpellBookType.Intonation:
+                    def = SpellsIntonation.GetSpell(idx);
+
+                    break;
             }
 
             return def;
@@ -868,6 +878,14 @@ namespace ClassicUO.Game.UI.Gumps
                     iconStartGraphic = 0x08C0;
 
                     break;
+                
+                case SpellBookType.Intonation:
+                    maxSpellsCount = SpellsIntonation.MaxSpellCount;
+                    bookGraphic = 0x2B29;
+                    minimizedGraphic = 0x08BA;
+                    iconStartGraphic = 0x945;
+
+                    break;
             }
 
             spellsOnPage = Math.Min(maxSpellsCount >> 1, 8);
@@ -906,6 +924,9 @@ namespace ClassicUO.Game.UI.Gumps
                     offset = 0;
                     break;
                 case SpellBookType.Evocation:
+                    offset = 1153000;
+                    break;
+                case SpellBookType.Intonation:
                     offset = 1153000;
                     break;
                 default:
@@ -990,6 +1011,14 @@ namespace ClassicUO.Game.UI.Gumps
                     reagents = def.CreateReagentListString("\n");
 
                     break;
+ 
+                case SpellBookType.Intonation:
+                    def = SpellsIntonation.GetSpell(offset + 1);
+                    name = def.Name;
+                    abbreviature = def.PowerWords;
+                    reagents = string.Empty;
+
+                    break;
             }
         }
 
@@ -1072,6 +1101,12 @@ namespace ClassicUO.Game.UI.Gumps
                     }
                     else
                         text = $"Mana cost: {manaCost}\nMin. Skill: {minSkill}";
+
+                    return;
+                    break;
+
+                case SpellBookType.Intonation:
+                    text = string.Empty;
 
                     return;
                     break;
@@ -1208,6 +1243,10 @@ namespace ClassicUO.Game.UI.Gumps
                     break;
                 case 0x4A9C:
                     _spellBookType = SpellBookType.Evocation;
+
+                    break;
+                case 0x4AA7:
+                    _spellBookType = SpellBookType.Intonation;
 
                     break;
             }
