@@ -96,12 +96,12 @@ namespace ClassicUO.Game.Data
             AddToWatchedSpell();
         }
 
-        public SpellDefinition(string name, int index, int gumpIconID, TargetType target)
+        public SpellDefinition(string name, int index, int gumpIconID, int gumpSmallIconID, TargetType target)
         {
             Name = name;
             ID = index;
             GumpIconID = gumpIconID;
-            GumpIconSmallID = gumpIconID - 0x1298;
+            GumpIconSmallID = gumpSmallIconID;
             Regs = new Reagents[] {Reagents.None};
             ManaCost = 0;
             MinSkill = 0;

@@ -153,7 +153,8 @@ namespace ClassicUO.Game.UI.Gumps
             
             if (id >= 831 && id <= 840)
             {
-                return 3003000 + (id - 1);
+                Log.Info($"ClilocId = {3003020 + (id - 1)}");
+                return 3003020 + (id - 1);
             }
 
             return 0;

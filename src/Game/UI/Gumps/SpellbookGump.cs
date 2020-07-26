@@ -487,7 +487,7 @@ namespace ClassicUO.Game.UI.Gumps
                 if (!_spells[i]) continue;
 
                 int iconX = 62;
-                int topTextX = 87;
+                int topTextX = _spellBookType == SpellBookType.Intonation ? 62 : 87;
                 int iconTextX = 112;
                 uint iconSerial = 100 + (uint) i;
 
@@ -577,6 +577,27 @@ namespace ClassicUO.Game.UI.Gumps
 
                         break;
                     }
+                    case SpellBookType.Intonation:
+                    {
+                        Label text = new Label(name, false, 0x0288, font: 6)
+                        {
+                            X = topTextX,
+                            Y = topTextY + 25
+                        };
+                        _dataBox.Add(text, page1);
+
+                        if (!string.IsNullOrEmpty(abbreviature))
+                        {
+                            text = new Label(abbreviature, false, 0x0288, 80, 6)
+                            {
+                                X = iconTextX,
+                                Y = 34
+                            };
+                            _dataBox.Add(text, page1);
+                        }
+
+                        break;
+                    }
 
                     default:
 
@@ -604,7 +625,8 @@ namespace ClassicUO.Game.UI.Gumps
 
                 ushort iconGraphic;
                 int toolTipCliloc;
-
+                int iconOffset = 0;
+                
                 if (_spellBookType == SpellBookType.Mastery)
                 {
                     iconGraphic = (ushort) SpellsMastery.GetSpell(i + 1).GumpIconID;
@@ -619,6 +641,7 @@ namespace ClassicUO.Game.UI.Gumps
                 {
                     iconGraphic = (ushort) SpellsIntonation.GetSpell(i + 1).GumpIconID;
                     GetSpellToolTip(out toolTipCliloc);
+                    iconOffset = 25;
                 }
                 else
                 {
@@ -628,7 +651,7 @@ namespace ClassicUO.Game.UI.Gumps
 
                 HueGumpPic icon = new HueGumpPic(iconX, 40, iconGraphic, 0,  (ushort) GetSpellDefinition(iconSerial).ID)
                 {
-                    X = iconX, Y = 40, LocalSerial = iconSerial
+                    X = iconX, Y = 40 + iconOffset, LocalSerial = iconSerial
                 };
 
 
@@ -927,7 +950,7 @@ namespace ClassicUO.Game.UI.Gumps
                     offset = 1153000;
                     break;
                 case SpellBookType.Intonation:
-                    offset = 1153000;
+                    offset = 1153101;
                     break;
                 default:
                     offset = 0;

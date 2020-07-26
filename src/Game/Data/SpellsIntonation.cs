@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ClassicUO.Game.Managers;
+using ClassicUO.Utility.Logging;
 
 namespace ClassicUO.Game.Data
 {
@@ -13,28 +14,28 @@ namespace ClassicUO.Game.Data
             {
                 // Spell List
                 {
-                    1, new SpellDefinition("Discordant Shout", 831, 0x949, TargetType.Harmful)
+                    1, new SpellDefinition("Discordant Shout", 831, 0x949, 0x949, TargetType.Harmful)
                 },
                 {
-                    2, new SpellDefinition("Song of Discord", 832, 0x94A, TargetType.Harmful)
+                    2, new SpellDefinition("Song of Discord", 832, 0x94A, 0x94A, TargetType.Harmful)
                 },
                 {
-                    3, new SpellDefinition("Animal Form", 833, 0x5322, TargetType.Beneficial)
+                    3, new SpellDefinition("Shout of Peace", 833, 0x947, 0x947, TargetType.Harmful)
                 },
                 {
-                    4, new SpellDefinition("Ki Attack", 834, 0x5323, TargetType.Harmful)
+                    4, new SpellDefinition("Song of Withdrawl", 834, 0x948, 0x948, TargetType.Harmful)
                 },
                 {
-                    5, new SpellDefinition("Surprise Attack", 835, 0x5324, TargetType.Harmful)
+                    5, new SpellDefinition("Battle Cry", 835, 0x945, 0x945, TargetType.Harmful)
                 },
                 {
-                    6, new SpellDefinition("Backstab", 836, 0x5325, TargetType.Harmful)
+                    6, new SpellDefinition("War Chant", 836, 0x946, 0x946, TargetType.Harmful)
                 },
                 {
-                    7, new SpellDefinition("Shadowjump", 837, 0x5326, TargetType.Neutral)
+                    7, new SpellDefinition("Mesmerize", 837, 0x59E7, 0x59E7, TargetType.Harmful)
                 },
                 {
-                    8, new SpellDefinition("Mirror Image", 838, 0x5327, TargetType.Neutral)
+                    8, new SpellDefinition("Campfire Melody", 838, 0x8DB, 0x8DB, TargetType.Neutral)
                 }
             };
         }
