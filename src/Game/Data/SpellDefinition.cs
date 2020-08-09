@@ -96,6 +96,21 @@ namespace ClassicUO.Game.Data
             AddToWatchedSpell();
         }
 
+        public SpellDefinition(string name, int index, int gumpIconID, int gumpSmallIconID, TargetType target)
+        {
+            Name = name;
+            ID = index;
+            GumpIconID = gumpIconID;
+            GumpIconSmallID = gumpSmallIconID;
+            Regs = new Reagents[] {Reagents.None};
+            ManaCost = 0;
+            MinSkill = 0;
+            TithingCost = 0;
+            PowerWords = "";
+            TargetType = target;
+            AddToWatchedSpell();
+        }
+
         private void AddToWatchedSpell()
         {
             if (!string.IsNullOrEmpty(PowerWords))
@@ -240,7 +255,13 @@ namespace ClassicUO.Game.Data
             if (fullidx < 800)
                 return SpellsMastery.GetSpell(fullidx % 100);
 
-            return SpellsEvocation.GetSpell(fullidx % 100);
+            if (fullidx < 830)
+                return SpellsEvocation.GetSpell(fullidx % 100);
+
+            if (fullidx < 840)
+                return SpellsIntonation.GetSpell((fullidx - 30) % 100);
+
+            return EmptySpell;
         }
 
         public static void FullIndexSetModifySpell(int fullidx, int id, int iconid, int smalliconid, int minskill, int manacost, int tithing, string name, string words, TargetType target, params Reagents[] regs)
@@ -289,8 +310,10 @@ namespace ClassicUO.Game.Data
                 SpellsMysticism.SetSpell(id - 77, in sd);
             else if (fullidx < 800)
                 SpellsMastery.SetSpell(id, in sd);
-            else
+            else if (fullidx < 830)
                 SpellsEvocation.SetSpell(id, in sd);
+            else if (fullidx < 840)
+                SpellsIntonation.SetSpell(id - 30, in sd);
         }
     }
 }

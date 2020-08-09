@@ -32,6 +32,7 @@ namespace ClassicUO.Game.Data
         Mysticism,
         Mastery,
         Evocation,
+        Intonation,
         Unknown = 0xFF
     }
 }
