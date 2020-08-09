@@ -86,8 +86,25 @@ namespace ClassicUO.Game.UI.Gumps
             GroupMatrixWidth = 44;
             GroupMatrixHeight = 44;
             AnchorType = ANCHOR_TYPE.SPELL;
+
+            if (_spell.ID == 839)
+                Hue = 68;
         }
 
+        public void SetBardPoolIndication(byte percent)
+        {
+            if (percent >= 90)
+                Hue = 0x26; // Red
+            else if (percent >= 70)
+                Hue = 0x2B; // Orange
+            else if (percent >= 50)
+                Hue = 0x36; // Yellow
+            else if (percent >= 20)
+                Hue = 0x3B; // Yellow Green
+            else
+                Hue = 0x45; // Green
+        }
+        
         public void SetActive()
         {
             Hue = 0x44;

@@ -36,5 +36,13 @@ namespace ClassicUO.Network
             var spellGump = UIManager.GetUseSpellButtonGump(spellId);
             spellGump?.SetInactive();
         }
+
+        public static void HandleSetBardingPoolValue(byte value)
+        {
+            Log.Trace($"Received Set Barding Pool Value, Value = {value}");
+
+            var spellGump = UIManager.GetUseSpellButtonGump(839);
+            spellGump?.SetBardPoolIndication(value);
+        }
     }
 }

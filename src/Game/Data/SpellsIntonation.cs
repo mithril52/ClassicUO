@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ClassicUO.Game.Managers;
 using ClassicUO.Utility.Logging;
@@ -23,7 +24,7 @@ namespace ClassicUO.Game.Data
                     3, new SpellDefinition("Shout of Peace", 833, 0x947, 0x947, TargetType.Harmful)
                 },
                 {
-                    4, new SpellDefinition("Song of Withdrawl", 834, 0x948, 0x948, TargetType.Harmful)
+                    4, new SpellDefinition("Song of Withdrawal", 834, 0x948, 0x948, TargetType.Harmful)
                 },
                 {
                     5, new SpellDefinition("Battle Cry", 835, 0x945, 0x945, TargetType.Harmful)
@@ -40,6 +41,8 @@ namespace ClassicUO.Game.Data
             };
         }
 
+        public static SpellDefinition BardingStatus = new SpellDefinition("Barding Status", 839, 1031, 1031, TargetType.Neutral);
+        
         public static string SpellBookName { get; set; } = SpellBookType.Intonation.ToString();
 
         public static IReadOnlyDictionary<int, SpellDefinition> GetAllSpells => _spellsDict;
@@ -47,9 +50,14 @@ namespace ClassicUO.Game.Data
 
         public static SpellDefinition GetSpell(int spellIndex)
         {
+            Console.WriteLine($"Spell ID: {spellIndex}");
             if (_spellsDict.TryGetValue(spellIndex, out SpellDefinition spell))
                 return spell;
 
+            if (spellIndex == 739 || spellIndex == 9)
+                return BardingStatus;
+            
+            Console.WriteLine("Failed to find spell");
             return SpellDefinition.EmptySpell;
         }
 

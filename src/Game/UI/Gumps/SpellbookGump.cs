@@ -298,6 +298,24 @@ namespace ClassicUO.Game.UI.Gumps
                         _dataBox.Add(label, page);
                     }
 
+                    if (page == 1 && _spellBookType == SpellBookType.Intonation)
+                    {
+                        Label label = new Label("Barding Pool Status", false, 0x0288, font: 6)
+                        {
+                            X = 57, Y = 132
+                        };
+                        _dataBox.Add(label, page);
+                        
+                        GumpPic bardingIcon = new GumpPic(95, 155, 0x407, 0)
+                        {
+                            LocalSerial = (839 - 1)
+                        };
+                        _dataBox.Add(bardingIcon, page);
+                        
+                        bardingIcon.MouseDoubleClick += OnIconDoubleClick;
+                        bardingIcon.DragBegin += OnIconDragBegin;
+                    }
+                    
                     int indexX = 106;
                     int dataX = 62;
                     int y = 0;
@@ -732,7 +750,7 @@ namespace ClassicUO.Game.UI.Gumps
                 return;
 
             SpellDefinition def = GetSpellDefinition((sender as Control).LocalSerial);
-
+            
             if (def == null)
                 return;
 
