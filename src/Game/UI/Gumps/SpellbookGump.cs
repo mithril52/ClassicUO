@@ -620,7 +620,7 @@ namespace ClassicUO.Game.UI.Gumps
                     default:
 
                     {
-                        Label text = new Label(name, false, 0x0288, font: 6)
+                        Label text = new Label(name, false, 0x0288, 105, 6)
                         {
                             X = topTextX,
                             Y = topTextY
@@ -660,6 +660,11 @@ namespace ClassicUO.Game.UI.Gumps
                     iconGraphic = (ushort) SpellsIntonation.GetSpell(i + 1).GumpIconID;
                     GetSpellToolTip(out toolTipCliloc);
                     iconOffset = 25;
+                }
+                else if (_spellBookType == SpellBookType.Spellweaving)
+                {
+                    iconGraphic = (ushort) SpellsSpellweaving.GetSpell(i + 1).GumpIconID;
+                    GetSpellToolTip(out toolTipCliloc);
                 }
                 else
                 {
@@ -956,7 +961,7 @@ namespace ClassicUO.Game.UI.Gumps
                     offset = 1063279;
                     break;
                 case SpellBookType.Spellweaving:
-                    offset = 1072042;
+                    offset = 1153201;
                     break;
                 case SpellBookType.Mysticism:
                     offset = 1095193;
@@ -1025,7 +1030,7 @@ namespace ClassicUO.Game.UI.Gumps
                     def = SpellsSpellweaving.GetSpell(offset + 1);
                     name = def.Name;
                     abbreviature = def.PowerWords;
-                    reagents = string.Empty;
+                    reagents = def.CreateReagentListString("\n");
 
                     break;
 
@@ -1104,7 +1109,15 @@ namespace ClassicUO.Game.UI.Gumps
                     manaCost = def.ManaCost;
                     minSkill = def.MinSkill;
 
-                    break;
+                    if (def.Cooldown > 0)
+                    {
+                        y = 148;
+                        text = $"Mana cost: {manaCost}\nMin. Skill: {minSkill}\nCooldown: {def.Cooldown}";
+                    }
+                    else
+                        text = $"Mana cost: {manaCost}\nMin. Skill: {minSkill}";
+
+                    return;
 
                 case SpellBookType.Mysticism:
                     def = SpellsMysticism.GetSpell(offset + 1);
