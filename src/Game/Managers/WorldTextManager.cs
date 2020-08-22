@@ -388,7 +388,7 @@ namespace ClassicUO.Game.Managers
         }
 
 
-        internal void AddDamage(uint obj, int dmg)
+        internal void AddDamage(uint obj, int dmg, bool heal = false)
         {
             if (!_damages.TryGetValue(obj, out var dm) || dm == null)
             {
@@ -396,7 +396,7 @@ namespace ClassicUO.Game.Managers
                 _damages[obj] = dm;
             }
 
-            dm.Add(dmg);
+            dm.Add(dmg, heal);
         }
 
         public override void Clear()
