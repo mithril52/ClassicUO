@@ -175,9 +175,10 @@ namespace ClassicUO.Game.Managers
                 case MessageType.Party:
                 case MessageType.Guild:
                 case MessageType.Alliance:
-
+                case MessageType.Translation:
+                case MessageType.JournalOnly:
                     break;
-
+                
                 default:
                     if (parent == null)
                         break;
@@ -187,7 +188,8 @@ namespace ClassicUO.Game.Managers
                     break;
             }
 
-            MessageReceived.Raise(new UOMessageEventArgs(parent, text, name, hue, type, font, text_type, unicode, lang), parent);
+            if(type != MessageType.OverheadOnly)
+                MessageReceived.Raise(new UOMessageEventArgs(parent, text, name, hue, type, font, text_type, unicode, lang), parent);
         }
 
         public static void OnLocalizedMessage(Entity entity, UOMessageEventArgs args)

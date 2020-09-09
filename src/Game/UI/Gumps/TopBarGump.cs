@@ -77,6 +77,7 @@ namespace ClassicUO.Game.UI.Gumps
                 new [] {1, (int) Buttons.Paperdoll },
                 new [] {1, (int) Buttons.Inventory },
                 new [] {1, (int) Buttons.Journal },
+                new [] {1, (int) Buttons.TranslateJournal },
                 new [] {0, (int) Buttons.Chat },
                 new [] {0, (int) Buttons.Help },
                 new [] {1, (int) Buttons.WorldMap },
@@ -88,7 +89,7 @@ namespace ClassicUO.Game.UI.Gumps
                 new [] {1, (int) Buttons.GlobalChat },
             };
 
-            string[] texts = {"Map", "Paperdoll", "Inventory", "Journal", "Chat", "Help", "World Map", "< ? >", "Debug", "NetStats", "UOStore", "Global Chat"};
+            string[] texts = {"Map", "Paperdoll", "Inventory", "Journal", "Translate Journal", "Chat", "Help", "World Map", "< ? >", "Debug", "NetStats", "UOStore", "Global Chat"};
 
             bool hasUOStore = Client.Version >= ClientVersion.CV_706400;
 
@@ -239,6 +240,22 @@ namespace ClassicUO.Game.UI.Gumps
                     }
 
                     break;
+                
+                case Buttons.TranslateJournal:
+                    PtJournalGump ptJournalGump = UIManager.GetGump<PtJournalGump>();
+
+                    if (ptJournalGump == null)
+                    {
+                        UIManager.Add(new PtJournalGump
+                            {X = 64, Y = 64});
+                    }
+                    else
+                    {
+                        ptJournalGump.SetInScreen();
+                        ptJournalGump.BringOnTop();
+                    }
+
+                    break;
 
                 case Buttons.Chat:
                     if (UOChatManager.ChatIsEnabled == CHAT_STATUS.ENABLED)
@@ -352,6 +369,7 @@ namespace ClassicUO.Game.UI.Gumps
             NetStats,
             UOStore,
             GlobalChat,
+            TranslateJournal
         }
 
         class RighClickableButton : Button

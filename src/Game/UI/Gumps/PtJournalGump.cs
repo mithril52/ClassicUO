@@ -34,7 +34,7 @@ using ClassicUO.Utility.Collections;
 
 namespace ClassicUO.Game.UI.Gumps
 {
-    internal class JournalGump : Gump
+    internal class PtJournalGump : Gump
     {
         private readonly ExpandableScroll _background;
         private readonly RenderedTextList _journalEntries;
@@ -45,7 +45,7 @@ namespace ClassicUO.Game.UI.Gumps
         private GumpPic _gumpPic;
         private Checkbox[] _filters_chekboxes = new Checkbox[4];
 
-        public JournalGump() : base(Constants.JOURNAL_LOCALSERIAL, 0)
+        public PtJournalGump() : base(Constants.PTJOURNAL_LOCALSERIAL, 0)
         {
             Height = 300;
             CanMove = true;
@@ -56,6 +56,12 @@ namespace ClassicUO.Game.UI.Gumps
                 TitleGumpID = 0x82A
             });
 
+            Add(new Label("POR", false, 903, font: 6)
+            {
+                X = 45,
+                Y = _diffY + 7
+            });
+            
             const ushort DARK_MODE_JOURNAL_HUE = 903;
 
             string str = "Dark mode";
@@ -146,10 +152,10 @@ namespace ClassicUO.Game.UI.Gumps
             }
 
             InitializeJournalEntries();
-            World.Journal.EntryAdded += AddJournalEntry;
+            World.PtJournal.EntryAdded += AddJournalEntry;
         }
 
-        public override GUMP_TYPE GumpType => GUMP_TYPE.GT_JOURNAL;
+        public override GUMP_TYPE GumpType => GUMP_TYPE.GT_PTJOURNAL;
 
         public ushort Hue
         {
@@ -196,7 +202,7 @@ namespace ClassicUO.Game.UI.Gumps
 
         public override void Dispose()
         {
-            World.Journal.EntryAdded -= AddJournalEntry;
+            World.PtJournal.EntryAdded -= AddJournalEntry;
             base.Dispose();
         }
 
@@ -260,7 +266,7 @@ namespace ClassicUO.Game.UI.Gumps
 
         private void InitializeJournalEntries()
         {
-            foreach (JournalEntry t in World.Journal.Entries)
+            foreach (JournalEntry t in World.PtJournal.Entries)
                 AddJournalEntry(null, t);
 
             _scrollBar.MinValue = 0;
