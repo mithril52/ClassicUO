@@ -240,6 +240,9 @@ namespace ClassicUO.Game.Data
             if (fullidx < 300)
                 return SpellsChivalry.GetSpell(fullidx % 100);
 
+            if (fullidx < 400)
+                return SpellsIncantation.GetSpell(fullidx % 100);
+
             if (fullidx < 500)
                 return SpellsBushido.GetSpell(fullidx % 100);
 

@@ -33,6 +33,7 @@ namespace ClassicUO.Game.Data
         Mastery,
         Evocation,
         Intonation,
-        Unknown = 0xFF
+        Incantation,
+        Unknown = 0xFF,
     }
 }

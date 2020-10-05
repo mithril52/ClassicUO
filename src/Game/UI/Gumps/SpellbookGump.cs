@@ -209,6 +209,7 @@ namespace ClassicUO.Game.UI.Gumps
             _dataBox.Clear();
             _dataBox.WantUpdateSize = true;
 
+            Console.WriteLine("Getting book info...");
             GetBookInfo(_spellBookType, out ushort bookGraphic, out ushort minimizedGraphic, out ushort iconStartGraphic, out int maxSpellsCount, out int spellsOnPage, out int dictionaryPagesCount);
 
             int totalSpells = 0;
@@ -234,6 +235,7 @@ namespace ClassicUO.Game.UI.Gumps
                 }
             }
 
+            Console.WriteLine("Determining pages to fill...");
             int pagesToFill = _spellBookType == SpellBookType.Mastery ? dictionaryPagesCount : (dictionaryPagesCount >> 1);
 
             _maxPage = pagesToFill + ((totalSpells + 1) >> 1);
@@ -285,6 +287,7 @@ namespace ClassicUO.Game.UI.Gumps
 
             int spellDone = 0, passivesDone = 0;
 
+            Console.WriteLine("Creating index...");
             for (int page = 1; page <= pagesToFill; page++)
             {
                 for (int j = 0; j < 2; j++)
@@ -500,8 +503,10 @@ namespace ClassicUO.Game.UI.Gumps
             int page1 = pagesToFill + 1;
             int topTextY = 6;
 
+            Console.WriteLine("Filling pages...");
             for (int i = 0, spellsDone = 0; i < maxSpellsCount; i++)
             {
+                Console.WriteLine(i);
                 if (!_spells[i]) continue;
 
                 int iconX = 62;
@@ -661,6 +666,11 @@ namespace ClassicUO.Game.UI.Gumps
                     GetSpellToolTip(out toolTipCliloc);
                     iconOffset = 25;
                 }
+                else if (_spellBookType == SpellBookType.Incantation)
+                {
+                    iconGraphic = (ushort) SpellsIncantation.GetSpell(i + 1).GumpIconID;
+                    GetSpellToolTip(out toolTipCliloc);
+                }
                 else if (_spellBookType == SpellBookType.Spellweaving)
                 {
                     iconGraphic = (ushort) SpellsSpellweaving.GetSpell(i + 1).GumpIconID;
@@ -671,6 +681,7 @@ namespace ClassicUO.Game.UI.Gumps
                     iconGraphic = (ushort) (iconStartGraphic + i);
                     GetSpellToolTip(out toolTipCliloc);
                 }
+                Console.WriteLine($"iconGraphic: {iconGraphic}, iconSerial: {iconSerial}");
 
                 HueGumpPic icon = new HueGumpPic(iconX, 40, iconGraphic, 0,  (ushort) GetSpellDefinition(iconSerial).ID)
                 {
@@ -720,6 +731,7 @@ namespace ClassicUO.Game.UI.Gumps
                 }
             }
 
+            Console.WriteLine("Setting active page...");
             SetActivePage(1);
         }
 
@@ -844,6 +856,11 @@ namespace ClassicUO.Game.UI.Gumps
                     def = SpellsIntonation.GetSpell(idx);
 
                     break;
+
+                case SpellBookType.Incantation:
+                    def = SpellsIncantation.GetSpell(idx);
+
+                    break;
             }
 
             return def;
@@ -928,6 +945,14 @@ namespace ClassicUO.Game.UI.Gumps
                 case SpellBookType.Intonation:
                     maxSpellsCount = SpellsIntonation.MaxSpellCount;
                     bookGraphic = 0x2B29;
+                    minimizedGraphic = 0x08BA;
+                    iconStartGraphic = 0x945;
+
+                    break;
+                
+                case SpellBookType.Incantation:
+                    maxSpellsCount = SpellsIncantation.MaxSpellCount;
+                    bookGraphic = 0x7D;
                     minimizedGraphic = 0x08BA;
                     iconStartGraphic = 0x945;
 
@@ -1065,6 +1090,14 @@ namespace ClassicUO.Game.UI.Gumps
                     reagents = string.Empty;
 
                     break;
+ 
+                case SpellBookType.Incantation:
+                    def = SpellsIncantation.GetSpell(offset + 1);
+                    name = def.Name;
+                    abbreviature = def.PowerWords;
+                    reagents = def.CreateReagentListString("\n");
+
+                    break;
             }
         }
 
@@ -1161,6 +1194,22 @@ namespace ClassicUO.Game.UI.Gumps
 
                 case SpellBookType.Intonation:
                     text = string.Empty;
+
+                    return;
+                    break;
+                
+                case SpellBookType.Incantation:
+                    def = SpellsIncantation.GetSpell(offset + 1);
+                    manaCost = def.ManaCost;
+                    minSkill = def.MinSkill;
+
+                    if (def.Cooldown > 0)
+                    {
+                        y = 148;
+                        text = $"Mana cost: {manaCost}\nMin. Skill: {minSkill}\nCooldown: {def.Cooldown}";
+                    }
+                    else
+                        text = $"Mana cost: {manaCost}\nMin. Skill: {minSkill}";
 
                     return;
                     break;
@@ -1301,6 +1350,10 @@ namespace ClassicUO.Game.UI.Gumps
                     break;
                 case 0x4AA7:
                     _spellBookType = SpellBookType.Intonation;
+
+                    break;
+                case 0x4AB1:
+                    _spellBookType = SpellBookType.Incantation;
 
                     break;
             }
