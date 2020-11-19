@@ -206,7 +206,7 @@ namespace ClassicUO.Game.UI.Gumps
                 if (World.ClientFeatures.PaperdollBooks)
                 {
                     Add(_combatBook = new GumpPic(156, 200, 0x2B34, 0));
-                    _combatBook.MouseDoubleClick += (sender, e) => { GameActions.OpenAbilitiesBook(); };
+                    //_combatBook.MouseDoubleClick += (sender, e) => { GameActions.OpenAbilitiesBook(); };
 
                     if (Client.Version >= ClientVersion.CV_7000)
                     {
@@ -214,7 +214,7 @@ namespace ClassicUO.Game.UI.Gumps
 
                         _racialAbilitiesBook.MouseDoubleClick += (sender, e) =>
                         {
-                            if (UIManager.GetGump<RacialAbilitiesBookGump>() == null) UIManager.Add(new RacialAbilitiesBookGump(100, 100));
+                            GameActions.RequestBookcase();
                         };
                         profileX += SCROLLS_STEP;
                     }

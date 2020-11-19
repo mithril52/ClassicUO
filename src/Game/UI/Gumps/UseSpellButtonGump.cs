@@ -177,6 +177,9 @@ namespace ClassicUO.Game.UI.Gumps
                 return 3003020 + (id - 1);
             }
 
+            if (id >= 901 && id <= 909)
+                return 3003900 + (id - 901);
+
             return 0;
         }
 

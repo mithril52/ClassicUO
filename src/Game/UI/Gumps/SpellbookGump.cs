@@ -671,6 +671,11 @@ namespace ClassicUO.Game.UI.Gumps
                     iconGraphic = (ushort) SpellsIncantation.GetSpell(i + 1).GumpIconID;
                     GetSpellToolTip(out toolTipCliloc);
                 }
+                else if (_spellBookType == SpellBookType.Taming)
+                {
+                    iconGraphic = (ushort) SpellsTaming.GetSpell(i + 1).GumpIconID;
+                    GetSpellToolTip(out toolTipCliloc);
+                }
                 else if (_spellBookType == SpellBookType.Spellweaving)
                 {
                     iconGraphic = (ushort) SpellsSpellweaving.GetSpell(i + 1).GumpIconID;
@@ -681,14 +686,14 @@ namespace ClassicUO.Game.UI.Gumps
                     iconGraphic = (ushort) (iconStartGraphic + i);
                     GetSpellToolTip(out toolTipCliloc);
                 }
-                Console.WriteLine($"iconGraphic: {iconGraphic}, iconSerial: {iconSerial}");
+                Console.WriteLine($"iconGraphic: {iconGraphic}, iconSerial: {iconSerial}, tooltip: {toolTipCliloc}");
 
                 HueGumpPic icon = new HueGumpPic(iconX, 40, iconGraphic, 0,  (ushort) GetSpellDefinition(iconSerial).ID)
                 {
                     X = iconX, Y = 40 + iconOffset, LocalSerial = iconSerial
                 };
 
-
+                Console.WriteLine("Checking tooltip...");
                 if (toolTipCliloc > 0)
                 {
                     string tooltip = ClilocLoader.Instance.GetString(toolTipCliloc + i);
@@ -700,6 +705,7 @@ namespace ClassicUO.Game.UI.Gumps
                 
                 _dataBox.Add(icon, page1);
 
+                Console.WriteLine("Getting reagents...");
                 if (!string.IsNullOrEmpty(reagents))
                 {
                     if (_spellBookType != SpellBookType.Mastery)
@@ -718,6 +724,7 @@ namespace ClassicUO.Game.UI.Gumps
                     _dataBox.Add(text, page1);
                 }
 
+                Console.WriteLine("Getting requires...");
                 if (_spellBookType != SpellBookType.Magery)
                 {
                     GetSpellRequires(i, out int requiriesY, out string requires);
@@ -861,6 +868,11 @@ namespace ClassicUO.Game.UI.Gumps
                     def = SpellsIncantation.GetSpell(idx);
 
                     break;
+ 
+                case SpellBookType.Taming:
+                    def = SpellsTaming.GetSpell(idx);
+
+                    break;
             }
 
             return def;
@@ -957,6 +969,14 @@ namespace ClassicUO.Game.UI.Gumps
                     iconStartGraphic = 0x945;
 
                     break;
+                
+                case SpellBookType.Taming:
+                    maxSpellsCount = SpellsTaming.MaxSpellCount;
+                    bookGraphic = 0x2B32;
+                    minimizedGraphic = 0x2B30;
+                    iconStartGraphic = 0x5DC0;
+
+                    break;
             }
 
             spellsOnPage = Math.Min(maxSpellsCount >> 1, 8);
@@ -998,6 +1018,9 @@ namespace ClassicUO.Game.UI.Gumps
                     offset = 1153000;
                     break;
                 case SpellBookType.Intonation:
+                    offset = 1153101;
+                    break;
+                case SpellBookType.Taming:
                     offset = 1153101;
                     break;
                 default:
@@ -1098,6 +1121,14 @@ namespace ClassicUO.Game.UI.Gumps
                     reagents = def.CreateReagentListString("\n");
 
                     break;
+
+                case SpellBookType.Taming:
+                    def = SpellsTaming.GetSpell(offset + 1);
+                    name = def.Name;
+                    abbreviature = def.PowerWords;
+                    reagents = string.Empty;
+
+                    break;
             }
         }
 
@@ -1190,13 +1221,11 @@ namespace ClassicUO.Game.UI.Gumps
                         text = $"Mana cost: {manaCost}\nMin. Skill: {minSkill}";
 
                     return;
-                    break;
 
                 case SpellBookType.Intonation:
                     text = string.Empty;
 
                     return;
-                    break;
                 
                 case SpellBookType.Incantation:
                     def = SpellsIncantation.GetSpell(offset + 1);
@@ -1212,7 +1241,20 @@ namespace ClassicUO.Game.UI.Gumps
                         text = $"Mana cost: {manaCost}\nMin. Skill: {minSkill}";
 
                     return;
-                    break;
+
+                case SpellBookType.Taming:
+                    def = SpellsTaming.GetSpell(offset + 1);
+                    manaCost = def.ManaCost;
+                    minSkill = def.MinSkill;
+
+                    y = 148;
+                    string stat = def.StatType == StatType.Mana
+                        ? "Mana"
+                        : "Stamina";
+                    
+                    text = $"{stat} cost: {manaCost}\nPet Stam: {minSkill}\nCooldown: {def.Cooldown} minutes";
+                    
+                    return;
 
             }
 
@@ -1354,6 +1396,11 @@ namespace ClassicUO.Game.UI.Gumps
                     break;
                 case 0x4AB1:
                     _spellBookType = SpellBookType.Incantation;
+
+                    break;
+                
+                case 0x4AAA:
+                    _spellBookType = SpellBookType.Taming;
 
                     break;
             }

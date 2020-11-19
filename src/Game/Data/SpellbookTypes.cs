@@ -34,6 +34,7 @@ namespace ClassicUO.Game.Data
         Evocation,
         Intonation,
         Incantation,
-        Unknown = 0xFF,
+        Taming,
+        Unknown = 0xFF
     }
 }

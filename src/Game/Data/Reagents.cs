@@ -64,6 +64,8 @@ namespace ClassicUO.Game.Data
         RubyPowder,
         SapphirePowder,
         CitrinePowder,
+        SpellParchment,
+        MagicalInk,
         
         // None
         None

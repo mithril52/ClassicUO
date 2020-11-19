@@ -766,6 +766,15 @@ namespace ClassicUO.Network
         }
     }
 
+    internal sealed class PBookcaseRequest : PacketWriter
+    {
+        public PBookcaseRequest() : base(0xBF)
+        {
+            WriteUShort(0xC007);
+            WriteUInt(World.Player);
+        }
+    }
+
     internal sealed class PProfileUpdate : PacketWriter
     {
         public PProfileUpdate(uint serial, string text) : base(0xB8)

@@ -111,6 +111,23 @@ namespace ClassicUO.Game.Data
             AddToWatchedSpell();
         }
 
+        public SpellDefinition(string name, int index, int gumpIconID, int statcost, int petStam, StatType stat, int cooldown)
+        {
+            Name = name;
+            ID = index;
+            GumpIconID = gumpIconID;
+            GumpIconSmallID = gumpIconID;
+            Regs = new Reagents[] {Reagents.None};
+            ManaCost = statcost;
+            MinSkill = petStam;
+            Cooldown = cooldown;
+            PowerWords = string.Empty;
+            TithingCost = 0;
+            TargetType = TargetType.Neutral;
+            StatType = stat;
+            AddToWatchedSpell();
+        }
+
         private void AddToWatchedSpell()
         {
             if (!string.IsNullOrEmpty(PowerWords))
@@ -130,7 +147,8 @@ namespace ClassicUO.Game.Data
         public readonly int TithingCost;
         public readonly TargetType TargetType;
         public readonly int Cooldown;
-
+        public readonly StatType StatType = StatType.Mana;
+        
         public string CreateReagentListString(string separator)
         {
             StringBuilder sb = new StringBuilder();
@@ -263,13 +281,16 @@ namespace ClassicUO.Game.Data
 
             if (fullidx < 840)
                 return SpellsIntonation.GetSpell((fullidx - 30) % 100);
+            
+            if (fullidx < 1000)
+                return SpellsTaming.GetSpell(fullidx % 100);
 
             return EmptySpell;
         }
 
         public static void FullIndexSetModifySpell(int fullidx, int id, int iconid, int smalliconid, int minskill, int manacost, int tithing, string name, string words, TargetType target, params Reagents[] regs)
         {
-            if (fullidx < 1 || fullidx > 899)
+            if (fullidx < 1 || fullidx > 999)
                 return;
 
             SpellDefinition sd = FullIndexGetSpell(fullidx);
@@ -317,6 +338,8 @@ namespace ClassicUO.Game.Data
                 SpellsEvocation.SetSpell(id, in sd);
             else if (fullidx < 840)
                 SpellsIntonation.SetSpell(id - 30, in sd);
+            else if (fullidx < 909)
+                SpellsTaming.SetSpell(id, in sd);
         }
     }
 }
