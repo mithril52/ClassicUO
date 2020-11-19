@@ -33,6 +33,8 @@ namespace ClassicUO.Game.Data
         Mastery,
         Evocation,
         Intonation,
+        Incantation,
+        Taming,
         Unknown = 0xFF
     }
 }

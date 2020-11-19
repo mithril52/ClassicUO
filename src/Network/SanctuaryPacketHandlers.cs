@@ -1,3 +1,5 @@
+using ClassicUO.Game;
+using ClassicUO.Game.GameObjects;
 using ClassicUO.Game.Managers;
 using ClassicUO.Utility.Logging;
 
@@ -43,6 +45,23 @@ namespace ClassicUO.Network
 
             var spellGump = UIManager.GetUseSpellButtonGump(839);
             spellGump?.SetBardPoolIndication(value);
+        }
+
+        public static void HandleAddHealText(uint mobile, ushort healAmount)
+        {
+            Log.Trace($"Received Add Heal Text, Value = {healAmount}");
+            
+            if (World.Player == null)
+                return;
+
+            Entity entity = World.Get(mobile);
+
+            if (entity != null)
+            {
+                if (healAmount > 0)
+                    World.WorldTextManager.AddDamage(entity, healAmount, true);
+            }
+
         }
     }
 }

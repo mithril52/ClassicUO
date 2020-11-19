@@ -262,6 +262,13 @@ namespace ClassicUO.Game
             Socket.Send(new PProfileRequest(serial));
         }
 
+        public static void RequestBookcase()
+        {
+            Console.WriteLine("RequestBookcase() called");
+
+            Socket.Send(new PBookcaseRequest());
+        }
+
         public static void ChangeSkillLockStatus(ushort skillindex, byte lockstate)
         {
             Socket.Send(new PSkillsStatusChangeRequest(skillindex, lockstate));
@@ -374,6 +381,7 @@ namespace ClassicUO.Game
 
         public static void OpenAbilitiesBook()
         {
+            Console.WriteLine("OpenAbilitiesBook() called");
             if (UIManager.GetGump<CombatBookGump>() == null) UIManager.Add(new CombatBookGump(100, 100));
         }
 

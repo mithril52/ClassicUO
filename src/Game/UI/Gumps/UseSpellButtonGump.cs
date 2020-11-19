@@ -142,6 +142,9 @@ namespace ClassicUO.Game.UI.Gumps
             if (id >= 201 && id <= 210)
                 return 1060585 + (id - 201);
 
+            if (id >= 301 && id <= 312)
+                return 1153301 + (id - 301);
+
             if (id >= 401 && id <= 406)
                 return 1060595 + (id - 401);
 
@@ -149,7 +152,7 @@ namespace ClassicUO.Game.UI.Gumps
                 return 1060610 + (id - 501);
 
             if (id >= 601 && id <= 616)
-                return 1071026 + (id - 601);
+                return 3003900 + (id - 601);
 
             if (id >= 678 && id <= 693)
                 return 1031678 + (id - 678);
@@ -173,6 +176,9 @@ namespace ClassicUO.Game.UI.Gumps
                 Log.Info($"ClilocId = {3003020 + (id - 1)}");
                 return 3003020 + (id - 1);
             }
+
+            if (id >= 901 && id <= 909)
+                return 3003900 + (id - 901);
 
             return 0;
         }

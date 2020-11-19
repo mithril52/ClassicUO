@@ -35,52 +35,34 @@ namespace ClassicUO.Game.Data
             {
                 // Spell List
                 {
-                    1, new SpellDefinition("Arcane Circle", 601, 0x59D8, "Myrshalee", 20, 0, TargetType.Neutral, Reagents.None)
+                    1, new SpellDefinition("Embracing Earth", 601, 0x2A5, "Un Ged Med", 2, 0, 0, TargetType.Beneficial, Reagents.Woundwort)
                 },
                 {
-                    2, new SpellDefinition("Gift of Renewal", 602, 0x59D9, "Olorisstra", 24, 0, TargetType.Beneficial, Reagents.None)
+                    2, new SpellDefinition("Restore Spirit", 602, 0x2A6, "Un Med", 4, 50, 5, TargetType.Beneficial, Reagents.BeesLace)
                 },
                 {
-                    3, new SpellDefinition("Immolating Weapon", 603, 0x59DA, "Thalshara", 32, 10, TargetType.Neutral, Reagents.None)
+                    3, new SpellDefinition("Wild Remedy", 603, 0x2A7, "Ur Mals Ger", 6, 50, 10, TargetType.Beneficial, Reagents.BlackthornBerries)
                 },
                 {
-                    4, new SpellDefinition("Attune Weapon", 604, 0x59DB, "Haeldril", 24, 0, TargetType.Harmful, Reagents.None)
+                    4, new SpellDefinition("Soothing Vale", 604, 0x2A8, "Med Ger", 8, 70, 15, TargetType.Beneficial, Reagents.Mugwort)
                 },
                 {
-                    5, new SpellDefinition("Thunderstorm", 605, 0x59DC, "Erelonia", 32, 10, TargetType.Harmful, Reagents.None)
+                    5, new SpellDefinition("Life Bloom", 605, 0x2A9, "Na-Hath Med Ged", 10, 80, 20, TargetType.Beneficial, Reagents.Mandragona, Reagents.Woundwort)
                 },
                 {
-                    6, new SpellDefinition("Nature's Fury", 606, 0x59DD, "Rauvvrae", 24, 0, TargetType.Neutral, Reagents.None)
+                    6, new SpellDefinition("Glade's Grace", 606, 0x2AA, "Ger Veh", 12, 50, 30, TargetType.Beneficial, Reagents.Bloodmoss)
                 },
                 {
-                    7, new SpellDefinition("Summon Fey", 607, 0x59DE, "Alalithra", 10, 38, TargetType.Neutral, Reagents.None)
+                    7, new SpellDefinition("Holy Shield", 607, 0x2AB, "Tal Gisa Veh", 14, 70, 45, TargetType.Beneficial, Reagents.Mugwort, Reagents.Bloodmoss)
                 },
                 {
-                    8, new SpellDefinition("Summon Fiend", 608, 0x59DF, "Nylisstra", 10, 38, TargetType.Neutral, Reagents.None)
+                    8, new SpellDefinition("Leyline Resonance", 608, 0x2AC, "Tal Ceph Fam", 16, 70, 45, TargetType.Beneficial, Reagents.Belladonna, Reagents.Mandragona)
                 },
                 {
-                    9, new SpellDefinition("Reaper Form", 609, 0x59E0, "Tarisstree", 34, 24, TargetType.Neutral, Reagents.None)
+                    9, new SpellDefinition("Sacred Grove", 609, 0x2AD, "Na-Hath Tal Veh", 18, 80, 60, TargetType.Neutral, Reagents.BeesLace, Reagents.Belladonna)
                 },
                 {
-                    10, new SpellDefinition("Wildfire", 610, 0x59E1, "Haelyn", 50, 66, TargetType.Harmful, Reagents.None)
-                },
-                {
-                    11, new SpellDefinition("Essence of Wind", 611, 0x59E2, "Anathrae", 40, 52, TargetType.Harmful, Reagents.None)
-                },
-                {
-                    12, new SpellDefinition("Dryad Allure", 612, 0x59E3, "Rathril", 40, 52, TargetType.Neutral, Reagents.None)
-                },
-                {
-                    13, new SpellDefinition("Ethereal Voyage", 613, 0x59E4, "Orlavdra", 32, 24, TargetType.Neutral, Reagents.None)
-                },
-                {
-                    14, new SpellDefinition("Word of Death", 614, 0x59E5, "Nyraxle", 50, 23, TargetType.Harmful, Reagents.None)
-                },
-                {
-                    15, new SpellDefinition("Gift of Life", 615, 0x59E6, "Illorae", 70, 38, TargetType.Beneficial, Reagents.None)
-                },
-                {
-                    16, new SpellDefinition("Arcane Empowerment", 616, 0x59E7, "Aslavdra", 50, 24, TargetType.Beneficial, Reagents.None)
+                    10, new SpellDefinition("Final Retreat", 610, 0x2AE, "Enok Gon Gisa", 20, 90, 75, TargetType.Beneficial, Reagents.BatNut, Reagents.BlackthornBerries)
                 }
             };
         }

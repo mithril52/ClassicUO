@@ -91,12 +91,12 @@ namespace ClassicUO.Game.GameObjects
             Parent = parent;
         }
 
-        public void Add(int damage)
+        public void Add(int damage, bool heal = false)
         {
             TextObject text_obj = TextObject.Create();
-            text_obj.RenderedText = RenderedText.Create(damage.ToString(), (ushort) (Parent == World.Player ? 0x0034 : 0x0021), 3, false);
+            text_obj.RenderedText = RenderedText.Create(damage.ToString(), (ushort) (heal ? 68 : Parent == World.Player ? 0x0034 : 0x0021), 3, false);
             text_obj.Time = Time.Ticks + 1500;
-
+            
             _messages.AddToFront(text_obj);
 
             if (_messages.Count > 10)

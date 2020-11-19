@@ -17,6 +17,9 @@ namespace ClassicUO.Game.Data
         Guild = 13,
         Alliance = 14,
         Command = 15,
+        Translation = 50,
+        JournalOnly = 51,
+        OverheadOnly = 52,
         Encoded = 0xC0,
         Party = 0xFF // This is a CUO assigned type, value is unimportant
     }

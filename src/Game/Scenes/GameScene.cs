@@ -273,7 +273,13 @@ namespace ClassicUO.Game.Scenes
 
                     break;
             }
-            if (!string.IsNullOrEmpty(text))
+
+            if (string.IsNullOrEmpty(text)) 
+                return;
+            
+            if(e.Type == MessageType.Translation)
+                World.PtJournal.Add(text, hue, name, e.TextType, e.IsUnicode);
+            else
                 World.Journal.Add(text, hue, name, e.TextType, e.IsUnicode);
         }
 

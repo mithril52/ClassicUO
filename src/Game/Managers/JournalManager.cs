@@ -34,12 +34,17 @@ namespace ClassicUO.Game.Managers
     {
         private StreamWriter _fileWriter;
         private bool _writerHasException;
-
-        public static Deque<JournalEntry> Entries { get; } = new Deque<JournalEntry>(Constants.MAX_JOURNAL_HISTORY_COUNT);
+        private readonly string _language;
+        
+        public Deque<JournalEntry> Entries { get; } = new Deque<JournalEntry>(Constants.MAX_JOURNAL_HISTORY_COUNT);
 
         public event EventHandler<JournalEntry> EntryAdded;
 
-
+        public JournalManager(string language)
+        {
+            _language = language;
+        }
+        
         public void Add(string text, ushort hue, string name, TEXT_TYPE type, bool isunicode = true)
         {
             JournalEntry entry = Entries.Count >= Constants.MAX_JOURNAL_HISTORY_COUNT ? Entries.RemoveFromFront() : new JournalEntry();
@@ -86,13 +91,13 @@ namespace ClassicUO.Game.Managers
                 try
                 {
                     string path = FileSystemHelper.CreateFolderIfNotExists(Path.Combine(CUOEnviroment.ExecutablePath, "Data"), "Client", "JournalLogs");
-                    _fileWriter = new StreamWriter(File.Open(Path.Combine(path, $"{DateTime.Now:yyyy_MM_dd_HH_mm_ss}_journal.txt"), FileMode.Create, FileAccess.Write, FileShare.Read))
+                    _fileWriter = new StreamWriter(File.Open(Path.Combine(path, $"{DateTime.Now:yyyy_MM_dd_HH_mm_ss}_journal_{_language}.txt"), FileMode.Create, FileAccess.Write, FileShare.Read))
                     {
                         AutoFlush = true
                     };
                     try
                     {
-                        string[] files = Directory.GetFiles(path, "*_journal.txt");
+                        string[] files = Directory.GetFiles(path, $"*_journal{_language}.txt");
                         Array.Sort<string>(files);
                         for (int i = files.Length - 1; i >= 100; --i)
                             File.Delete(files[i]);

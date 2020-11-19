@@ -92,7 +92,7 @@ namespace ClassicUO.Game.Managers
                 0x004C, new ContainerData(0x004C, 0x002D, 0x002C, 46, 74, 196, 184)
             },
             {
-                0x004D, new ContainerData(0x004D, 0x002F, 0x002E, 76, 12, 140, 68)
+                0x004D, new ContainerData(0x004D, 0x002F, 0x002E, 46, 2, 190, 98)
             },
             {
                 0x004E, new ContainerData(0x004E, 0x002D, 0x002C, 24, 96, 140, 152)

@@ -538,6 +538,9 @@ namespace ClassicUO.Configuration
                                 case GUMP_TYPE.GT_JOURNAL:
                                     gump = new JournalGump();
                                     break;
+                                case GUMP_TYPE.GT_PTJOURNAL:
+                                    gump = new PtJournalGump();
+                                    break;
                                 case GUMP_TYPE.GT_MACROBUTTON:
                                     gump = new MacroButtonGump();
                                     break;

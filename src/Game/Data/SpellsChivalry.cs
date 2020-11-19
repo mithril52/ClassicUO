@@ -59,7 +59,7 @@ namespace ClassicUO.Game.Data
                     8, new SpellDefinition("Noble Sacrifice", 208, 0x5107, 0x5107, "Dium Prostra", 20, 65, 30, TargetType.Beneficial, Reagents.None)
                 },
                 {
-                    9, new SpellDefinition("Remove Curse", 209, 0x5108, 0x5108, "Extermo Vomica", 20, 5, 10, TargetType.Beneficial, Reagents.None)
+                    9, new SpellDefinition("Reverse Curse", 209, 0x5108, 0x5108, "Extermo Vomica", 20, 5, 10, TargetType.Beneficial, Reagents.None)
                 },
                 {
                     10, new SpellDefinition("Sacred Journey", 210, 0x5109, 0x5109, "Sanctum Viatas", 20, 5, 10, TargetType.Neutral, Reagents.None)

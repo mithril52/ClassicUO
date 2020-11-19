@@ -80,7 +80,8 @@ namespace ClassicUO.Game
 
         public static WorldTextManager WorldTextManager { get; } = new WorldTextManager();
 
-        public static JournalManager Journal { get; } = new JournalManager();
+        public static JournalManager Journal { get; } = new JournalManager("en");
+        public static JournalManager PtJournal { get; } = new JournalManager("pt");
 
         public static HouseCustomizationManager CustomHouseManager;
 
@@ -802,6 +803,7 @@ namespace ClassicUO.Game
             OldSeason = Seasons.Summer;
 
             Journal.Clear();
+            PtJournal.Clear();
             WorldTextManager.Clear();
             ActiveSpellIcons.Clear();
 

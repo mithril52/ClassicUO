@@ -3746,6 +3746,9 @@ namespace ClassicUO.Network
                 case 0xC005:
                     SanctuaryPacketHandlers.HandleSetBardingPoolValue(p.ReadByte());
                     break;
+                case 0xC006:
+                    SanctuaryPacketHandlers.HandleAddHealText(p.ReadUInt(), p.ReadUShort());
+                    break;
                 default:
                     Log.Warn($"Unhandled 0xBF - sub: {cmd.ToHex()}");
                     break;
